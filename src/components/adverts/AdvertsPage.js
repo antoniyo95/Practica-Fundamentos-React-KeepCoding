@@ -4,14 +4,13 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAdverts } from "./service";
 import Button from "../shared/Button";
-import { logout } from "../auth/service";
 import Layout from "../layout/Layout";
 
 const styleInLine = {
   backgroundColor: "lightblue",
 };
 
-const AdvertsPage = ({ onLogout }) => {
+const AdvertsPage = props => {
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
@@ -24,13 +23,8 @@ const AdvertsPage = ({ onLogout }) => {
     dark: theme === "dark",
   });
 
-  const handleClick = async () => {
-    await logout();
-    onLogout();
-  };
-
   return (
-    <Layout title="What's going on...">
+    <Layout title="What's going on..."{...props}>
       <div
         //className={className}
         className={styles.AdvertsPage}
