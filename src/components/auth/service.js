@@ -7,13 +7,13 @@ import storage from "../../utils/storage";
 export const login = (credentials) => {
   return client.post("/api/auth/login", credentials).then(({ accessToken }) => {
     setAuthorizationHeader(accessToken);
-    storage.set("auth", accessToken);
+    storage.set('Bearer', accessToken);
   });
 };
 
 export const logout = () => {
   return Promise.resolve().then(() => {
     removeAuthorizationHeader();
-    storage.remove('auth');
+    storage.remove('Bearer');
   });
 };
